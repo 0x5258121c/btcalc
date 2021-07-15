@@ -7,7 +7,7 @@
 #ifndef BUFSIZE
 #define BUFSIZE 128
 #endif
-
+ 
 // Function declarations
 
 double muminus(double, double);
