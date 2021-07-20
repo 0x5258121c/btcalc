@@ -7,7 +7,7 @@
 #ifndef BUFSIZE
 #define BUFSIZE 128
 #endif
- 
+
 // Function declarations
 
 double muminus(double, double);
@@ -73,7 +73,7 @@ double mmod(double dividend, double divisor)
 	_Bool dividend_is_negative = dividend < 0;
 	_Bool divisor_is_negative = divisor < 0;
 
-	double long result = dividend;
+	double result = dividend;
 
 	if(!divisor) {
 
@@ -82,13 +82,17 @@ double mmod(double dividend, double divisor)
 
 	}
 
+	if(dividend == 0) {
+		return 0;
+	}
+
 	if((!dividend_is_negative && !divisor_is_negative) || (dividend_is_negative && divisor_is_negative)) {
 
 		if(!dividend_is_negative && !divisor_is_negative)
-			while(result - divisor > 0)
+			while(result - divisor >= 0)
 				result -= divisor;
 		else
-			while(result - divisor < 0)
+			while(result - divisor <= 0)
 				result -= divisor;
 
 	} else if(xor(dividend_is_negative, divisor_is_negative)) {
