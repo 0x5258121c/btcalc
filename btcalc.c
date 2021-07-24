@@ -256,7 +256,7 @@ double calculate(char* in)
 
 			} else if(nextop = getop(in[i + 1])) {
 
-				if((nextop->op != '(') && (nextop->op != ')')) {
+				if((nextop->op != '(') && (nextop->op != ')') && (nextop->op != '-')) {
 
 					if(op->op != ')') {
 
