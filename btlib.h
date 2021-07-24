@@ -23,6 +23,7 @@ char* merge_args(int, char**);                      // Merge args of an arg arra
 char* get_input(size_t);
 char* rm_space(char*);                              // Remove spaces from a string
 char* cut_str(char*, uint8_t, uint8_t); 	        // Returns the string given in the parameters as a new string but starting from index_start and ending in index_end
+char* stob(short);																	// Returns binary representation of a short (16 bit signed integer)
 _Bool ismemberof(char*, uint8_t);                  // Checks if a char is an element of a string
 _Bool isarrmemberof(char**, char*);				    // Checks if an array is an element of a 2D array
 _Bool xor(_Bool, _Bool);
@@ -223,6 +224,53 @@ char* cut_str(char* in, uint8_t index_start, uint8_t index_end)
 
 	}
 
+}
+
+// Returns binary representation of a short (16 bit signed integer); 127
+char* stob(short num)
+{
+
+	char* bin = malloc(sizeof(char) * 16);
+
+	for(uint8_t i = 0; i < 16; i++)
+		bin[i] = '0';
+
+  if(num < 0) {
+
+		bin[0] = '1';
+
+		for(uint8_t i = 15; i > 0; i--) {
+
+			short x = mpow(2.0, (double)i-1);
+
+			if(num/x <= -1) {
+
+				bin[16 - i] = '1';
+				num += x;
+
+			}
+
+    }
+
+	} else if(num > 0) {
+
+    for(uint8_t i = 15; i > 0; i--) {
+
+			short x = mpow(2.0, (double)i-1);
+
+			if((double)num/x >= 1) {
+
+				bin[16 - i] = '1';
+				num -= x;
+
+			}
+
+    }
+
+	}
+
+	return bin;
+	
 }
 
 // Checks if a char is an element of a string
