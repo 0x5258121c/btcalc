@@ -238,15 +238,16 @@ char* stob(short num)
 	if(num < 0) {
 
 		bin[0] = '1';
+		short cur = mpow(-2, 15);
 
 		for(uint8_t i = 15; i > 0; i--) {
 
 			short x = mpow(2.0, (double)i-1);
 
-			if(num/x <= -1) {
+			if(cur + x <= num) {
 
 				bin[16 - i] = '1';
-				num += x;
+				cur += x;
 
 			}
 
