@@ -258,7 +258,7 @@ char* stob(short num)
 
 			short x = mpow(2.0, (double)i-1);
 
-			if(num/x => 1) {
+			if(num/x >= 1) {
 
 				bin[16 - i] = '1';
 				num -= x;
