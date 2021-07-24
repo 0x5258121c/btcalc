@@ -235,7 +235,7 @@ char* stob(short num)
 	for(uint8_t i = 0; i < 16; i++)
 		bin[i] = '0';
 
-  if(num < 0) {
+	if(num < 0) {
 
 		bin[0] = '1';
 
@@ -250,27 +250,27 @@ char* stob(short num)
 
 			}
 
-    }
+		}
 
 	} else if(num > 0) {
 
-    for(uint8_t i = 15; i > 0; i--) {
+		for(uint8_t i = 15; i > 0; i--) {
 
 			short x = mpow(2.0, (double)i-1);
 
-			if((double)num/x >= 1) {
+			if(num/x => 1) {
 
 				bin[16 - i] = '1';
 				num -= x;
 
 			}
 
-    }
+		}
 
 	}
 
 	return bin;
-	
+
 }
 
 // Checks if a char is an element of a string
