@@ -169,7 +169,7 @@ uint8_t validate_input(char* in)
 	_Bool valid = 1;
 	uint8_t i;  
 
-	char* valid_nonalpha_chars = "%+-/:*().,";
+	char* valid_nonalpha_chars = "^%+-/:*().,";
 	char* temp = malloc(sizeof(char) * 4);
 
 	if(Help_queued)
