@@ -118,6 +118,11 @@ int main(int argc, char* argv[])
 
 	if(!argv[2]) {
 
+		if(strlen(argv[1]) > BUFSIZE) {
+			fprintf(stderr, "ERROR: Input has more characters than the maximum allowed.\n");
+			exit(EXIT_FAILURE);
+		}
+
 		switch(strasciivalsum(argv[1])) { // switch statement checks if argv[1] matches any of the valid parameters: '-h' and '--help'
 
 			case 149:
