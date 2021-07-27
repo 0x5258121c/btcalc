@@ -6,7 +6,7 @@ This calculator can be used inline or be executed without any additional argumen
 other than the programs name to do more operations and not have to call the program every time.
 
 ### Inline Usage Example: 
-`btcalc "78 * 22 - (71 * (8 - 11))`
+`btcalc "78 * 22 - (71 * (8 - 11))"`
 
 ### Continuous Usage Example: 
 `> 72^2 - 11 * (90 / 77) / 10  - 277`
