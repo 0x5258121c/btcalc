@@ -18,14 +18,11 @@ double mdiv(double, double);
 double mpow(double, double);
 double mmod(double, double);
 uint16_t strasciivalsum(char*); 					// Returns the sum of the ascii values of the characters in a string
-uint8_t chartoint(char);        					// Converts a char digit into a numeric digit.
-char* merge_args(int, char**);                      // Merge args of an arg array into one array, putting no space inbetween args.
+uint8_t chartoint(char);		// Converts a char digit into a numeric digit.
 char* get_input(size_t);
 char* rm_space(char*);                              // Remove spaces from a string
 char* cut_str(char*, uint8_t, uint8_t); 	        // Returns the string given in the parameters as a new string but starting from index_start and ending in index_end
-char* stob(short);																	// Returns binary representation of a short (16 bit signed integer)
-_Bool ismemberof(char*, uint8_t);                  // Checks if a char is an element of a string
-_Bool isarrmemberof(char**, char*);				    // Checks if an array is an element of a 2D array
+_Bool ismemberof(char*, uint8_t);                  // Checks if a char is an element of a strng
 _Bool xor(_Bool, _Bool);
 double strtodec(char*); 							// Converts a number in a string into its decimal value.
 
@@ -130,26 +127,10 @@ uint16_t strasciivalsum(char* str)
 }
 
 // Converts a char digit into a numeric digit.
-uint8_t chartoint(char c) 
-{ 
-
-	return c - 48; 
-
-}
-
-// Merge args of an arg array 
-// into one array, putting no space inbetween args.
-char* merge_args(int argc, char** args)
+uint8_t chartoint(char c)
 {
-
-	char* arr = malloc(sizeof(char) * BUFSIZE);
-	uint8_t i = 1;
-
-	while(i < argc)
-		strcat(arr, args[i++]);
-
-	arr = realloc(arr, strlen(arr) + 1);
-	return arr;
+	
+	return c - 48;
 
 }
 
@@ -226,54 +207,6 @@ char* cut_str(char* in, uint8_t index_start, uint8_t index_end)
 
 }
 
-// Returns binary representation of a short (16 bit signed integer); 127
-char* stob(short num)
-{
-
-	char* bin = malloc(sizeof(char) * 16);
-
-	for(uint8_t i = 0; i < 16; i++)
-		bin[i] = '0';
-
-	if(num < 0) {
-
-		bin[0] = '1';
-		short cur = mpow(-2, 15);
-
-		for(uint8_t i = 15; i > 0; i--) {
-
-			short x = mpow(2.0, (double)i-1);
-
-			if(cur + x <= num) {
-
-				bin[16 - i] = '1';
-				cur += x;
-
-			}
-
-		}
-
-	} else if(num > 0) {
-
-		for(uint8_t i = 15; i > 0; i--) {
-
-			short x = mpow(2.0, (double)i-1);
-
-			if(num/x >= 1) {
-
-				bin[16 - i] = '1';
-				num -= x;
-
-			}
-
-		}
-
-	}
-
-	return bin;
-
-}
-
 // Checks if a char is an element of a string
 _Bool ismemberof(char* str, uint8_t c)
 {
@@ -281,25 +214,6 @@ _Bool ismemberof(char* str, uint8_t c)
 	for(uint8_t i = 0; i < strlen(str); i++) {
 	
 		if(c == str[i])
-			return true;
-
-	}
-
-	return false;
-
-}
-
-// Checks if an array is an element of a 2D array
-_Bool isarrmemberof(char** arrs, char* arr)
-{
-	uint8_t j = 0;
-
-	while(arrs[j] != '\0');
-		j++;
-
-	for(uint8_t i = 0; i < j; i++) {
-
-		if(!strcmp(arr, arrs[i]))
 			return true;
 
 	}

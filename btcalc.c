@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
-#include "btlib.h"
+#include "btcalc.h"
 
 #define MAXOP 64
 #define MAXNUM 64
@@ -358,7 +358,7 @@ void exec_params(void)
 	if(Help_queued) {
 
 		printf("\nValid inline arguments: \"-h\", \"--help\"\n\n");
-		printf("Valid app mode arguments: \"help\", \"h\", \"q\"\n\n");
+		printf("Valid continuous mode arguments: \"help\", \"h\", \"q\"\n\n");
 		printf("Valid characters are: Binary operators, digits, comma and dot\
 (both used to represent decimal numbers)\n\n");
 		printf("Example inline usage: btcalc \"32 * 2 - 5\"\n\n");
