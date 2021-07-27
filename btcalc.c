@@ -182,8 +182,8 @@ uint8_t validate_input(char* in)
 
 		if(isalpha(in[i])) {
 
-			for(uint8_t j = 0; j < 4; j++)
-				temp[j] = in[i];
+			for(uint8_t j = 0; i == 0 && j < 4; j++)
+				temp[j] = in[j];
 
 			if(!strcmp(temp, "help")) {
 
@@ -199,13 +199,12 @@ uint8_t validate_input(char* in)
 
 			}
 
-			if(in[i] == 'q' && i == 0) {
+			if(i == 0) {
 
-				Quit_queued = 1;
-
-			} else if(in[0] == 'h' && i == 0) {
-
-				Help_queued = 1;
+				if(in[i] == 'q')
+					Quit_queued = 1;
+				else if(in[0] == 'h')
+					Help_queued = 1;
 
 			} else {
 
