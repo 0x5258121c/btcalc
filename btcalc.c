@@ -59,10 +59,8 @@ uint8_t n_numstack = 0;
 
 operator* getop(uint8_t);
 void push_opstack(operator*);
-void insert_opstack(operator*);
 operator* pop_opstack(void);
 void push_numstack(double);
-void insert_numstack(double, char*);
 double pop_numstack(void);
 void process_op(operator*, char*);
 
@@ -404,36 +402,6 @@ void push_opstack(operator* op)
 
 }
 
-void insert_opstack(operator* op)
-{
-
-	if(n_opstack > MAXOP - 1) {
-
-		fprintf(stderr, "ERROR: Operator stack overflow\n");
-		exit(EXIT_FAILURE);
-
-	}
-
-	uint8_t i = 0,j = 0;
-
-	for(i = 0; i < n_opstack; i++) {
-
-		if(opstack[i]->op == '(') {
-
-			j = i;
-			j++;
-
-		}
-
-	}
-
-	for(i = n_opstack++; i != j; i--)
-		opstack[i] = opstack[i - 1];
-
-	opstack[j] = op;
-
-}
-
 operator* pop_opstack()
 {
 
@@ -461,63 +429,6 @@ void push_numstack(double num)
 	}
 
 	numstack[n_numstack++] = num;
-
-}
-
-void insert_numstack(double num, char* in)
-{
-	char* temp = malloc(sizeof(char) * 20);
-	operator* checkop = NULL;
-
-	if(n_numstack > MAXNUM - 1) {
-
-		fprintf(stderr, "ERROR: Number stack overflow\n");
-		exit(EXIT_FAILURE);
-
-	}
-
-	uint8_t i = 0, j = 0, k = 0;
-
-	for(; i < n_opstack; i++) {
-
-		if(opstack[i]->op == '(') {
-
-			j = i;
-			j++;
-
-		}
-
-	}
-	
-	for(i = j; !(checkop = getop(in[i])) && (in[i] != '\0'); i++)
-		if(isdigit(in[i]) || in[i] == '.' || in[i] == ',')
-			temp[k++] = in[i];
-
-	temp[k + 1] = '\0';
-
-	for(k = 0; k < n_numstack - 1; k++) {
-
-		if(strtodec(temp) == numstack[k]) {
-
-			free(temp);
-
-			for(i = n_numstack++; i != k; i--)
-				numstack[i] = numstack[i - 1];
-
-			numstack[k] = num;
-
-			return;
-
-		}
-
-	}
-
-	free(temp);
-	
-	for(i = n_numstack++; i != 0; i--)
-		numstack[i] = numstack[i - 1];
-
-	numstack[0] = num;
 
 }
 
